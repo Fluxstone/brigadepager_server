@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Alarm {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)

@@ -2,7 +2,7 @@ package de.firebrigade.pagerserver.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.UUID;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,23 +14,15 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue
-    private UUID id;
-
-    @Column(length = 100, nullable = false)
-    private String lastName;
-
-    @Column(length = 100, nullable = false)
-    private String firstName;
+    private String username;
 
     @Column(nullable = false)
-    private UUID brigadeId;
+    private String password;
 
     @Column(nullable = false)
-    private UUID certificationId;
+    private boolean enabled;
 
-    @Column(nullable = false)
-    private UUID credentialsId;
-
-    private boolean isAdmin;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // Cascade ALL to save authorities automatically
+    @JoinColumn(name = "username", referencedColumnName = "username")
+    private List<Authority> authorities;  // Will hold roles for the user
 }

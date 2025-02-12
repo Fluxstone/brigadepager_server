@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Brigade {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(length = 255, nullable = false, unique = true)

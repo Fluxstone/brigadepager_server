@@ -2,6 +2,7 @@ package de.firebrigade.pagerserver.controller;
 
 import de.firebrigade.pagerserver.entities.Brigade;
 import de.firebrigade.pagerserver.services.BrigadeService;
+import de.firebrigade.pagerserver.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class BrigadeController {
 
     private final BrigadeService brigadeService;
+    private final UserService userService;
 
     @GetMapping
     public List<Brigade> getAllBrigades() {
@@ -23,6 +25,7 @@ public class BrigadeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Brigade> getBrigadeById(@PathVariable UUID id) {
+        System.out.println(userService.getAllUsers());
         return brigadeService.getBrigadeById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
