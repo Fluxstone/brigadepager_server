@@ -2,28 +2,31 @@ package de.firebrigade.pagerserver.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "alarm")
+@Table(name = "alarm_response")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Alarm {
-
+public class AlarmResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private LocalDate time;
+    private UUID alarmId;
 
-    @Column(length = 400)
-    private String message;
+    @Column(nullable = false)
+    private UUID staffId;
+
+    @Column(nullable = false)
+    private boolean response;
+
+    @Column(nullable = false)
+    private LocalDate timeDate;
 }

@@ -16,6 +16,7 @@ public class AlarmController {
 
     private final AlarmService alarmService;
 
+    //TODO: Check for Pagination
     @GetMapping
     public List<Alarm> getAllAlarms() {
         return alarmService.getAllAlarms();
