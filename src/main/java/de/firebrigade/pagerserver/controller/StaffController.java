@@ -1,5 +1,6 @@
 package de.firebrigade.pagerserver.controller;
 
+import de.firebrigade.pagerserver.entities.DeviceTokenRequest;
 import de.firebrigade.pagerserver.entities.Staff;
 import de.firebrigade.pagerserver.services.StaffService;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -32,6 +34,17 @@ public class StaffController {
     public Staff createStaff(@RequestBody Staff staff) {
         return staffService.saveStaff(staff);
     }
+
+    @PostMapping("/deviceToken")
+    public String manageDeviceToken(@RequestBody DeviceTokenRequest request) {
+        return staffService.manageDeviceToken(request);
+    }
+
+    @GetMapping("/getByEmail/{email}")
+    public Optional<Staff> getStaffByEmail(@PathVariable String email) {
+        return staffService.getStaffByEmail(email);
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStaff(@PathVariable UUID id) {

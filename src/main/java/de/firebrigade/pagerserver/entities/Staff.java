@@ -27,10 +27,13 @@ public class Staff {
     private UUID brigadeId;
 
     @Column(nullable = false)
-    private UUID certificationId;
+    private UUID certificationsId;
 
     @Column(nullable = false, length = 255)
-    private String credentialsMail;
+    private String credentialsId;
+
+    @Column(length = 512)
+    private String deviceToken;
 
     private boolean isAdmin;
 }

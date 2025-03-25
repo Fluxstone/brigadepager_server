@@ -1,7 +1,9 @@
 package de.firebrigade.pagerserver.services;
 
+import de.firebrigade.pagerserver.entities.DeviceTokenRequest;
 import de.firebrigade.pagerserver.entities.Staff;
 import de.firebrigade.pagerserver.repositories.StaffRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,18 @@ public class StaffService {
 
     public void deleteStaff(UUID id) {
         staffRepository.deleteById(id);
+    }
+
+    public Optional<Staff> getStaffByEmail(String email){
+        return Optional.ofNullable(staffRepository.getStaffByEmail(email));
+    }
+
+    public String manageDeviceToken(DeviceTokenRequest request){
+        int updated = staffRepository.manageDeviceToken(request.getStaffId(), request.getDeviceToken());
+        if (updated > 0) {
+            return "Device token updated successfully.";
+        } else {
+            throw new EntityNotFoundException("Staff member not found.");
+        }
     }
 }
