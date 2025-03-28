@@ -1,6 +1,7 @@
 package de.firebrigade.pagerserver.controller;
 
 import de.firebrigade.pagerserver.entities.Alarm;
+import de.firebrigade.pagerserver.entities.EditAlarmRequest;
 import de.firebrigade.pagerserver.services.AlarmService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,11 @@ public class AlarmController {
     @PostMapping
     public Alarm createAlarm(@RequestBody Alarm alarm) {
         return alarmService.saveAlarm(alarm);
+    }
+
+    @PostMapping("/editAlarm")
+    public String editAlarm(@RequestBody EditAlarmRequest request) {
+        return alarmService.editAlarm(request);
     }
 
     @DeleteMapping("/{id}")

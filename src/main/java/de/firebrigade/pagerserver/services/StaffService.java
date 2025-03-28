@@ -37,6 +37,10 @@ public class StaffService {
         return Optional.ofNullable(staffRepository.getStaffByEmail(email));
     }
 
+    public List<String> getAllDeviceTokens(){
+        return staffRepository.getAllDeviceTokens();
+    }
+
     public String manageDeviceToken(DeviceTokenRequest request){
         int updated = staffRepository.manageDeviceToken(request.getStaffId(), request.getDeviceToken());
         if (updated > 0) {

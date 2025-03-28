@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import java.util.List;
 
 import java.util.UUID;
 
@@ -19,6 +20,10 @@ public interface StaffRepository extends JpaRepository<Staff, UUID> {
     @Transactional
     @Query("SELECT s FROM Staff s WHERE s.credentialsId = :credentialsId")
     Staff getStaffByEmail(@Param("credentialsId") String credentialsId);
+
+    @Transactional
+    @Query("SELECT s.deviceToken FROM Staff s WHERE s.deviceToken IS NOT NULL")
+    List<String> getAllDeviceTokens();
 
 }
 
