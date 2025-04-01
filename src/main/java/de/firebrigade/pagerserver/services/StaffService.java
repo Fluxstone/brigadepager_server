@@ -2,6 +2,7 @@ package de.firebrigade.pagerserver.services;
 
 import de.firebrigade.pagerserver.entities.DeviceTokenRequest;
 import de.firebrigade.pagerserver.entities.Staff;
+import de.firebrigade.pagerserver.entities.StaffNameChangeRequest;
 import de.firebrigade.pagerserver.repositories.StaffRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,15 @@ public class StaffService {
 
     public List<String> getAllDeviceTokens(){
         return staffRepository.getAllDeviceTokens();
+    }
+
+    public String changeName(StaffNameChangeRequest request){
+        int updated = staffRepository.changeName(request.getStaffId(), request.getFirstName(), request.getLastName());
+        if (updated > 0) {
+            return "Name updated successfully.";
+        } else {
+            throw new EntityNotFoundException("Staff member not found.");
+        }
     }
 
     public String manageDeviceToken(DeviceTokenRequest request){

@@ -2,6 +2,7 @@ package de.firebrigade.pagerserver.controller;
 
 import de.firebrigade.pagerserver.entities.DeviceTokenRequest;
 import de.firebrigade.pagerserver.entities.Staff;
+import de.firebrigade.pagerserver.entities.StaffNameChangeRequest;
 import de.firebrigade.pagerserver.services.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,12 @@ public class StaffController {
     @PostMapping("/deviceToken")
     public String manageDeviceToken(@RequestBody DeviceTokenRequest request) {
         return staffService.manageDeviceToken(request);
+    }
+
+    //TODO: This should be a editStaff function which takes a cert object, a staff object ect.
+    @PostMapping("/changeName")
+    public String changeName(@RequestBody StaffNameChangeRequest request) {
+        return staffService.changeName(request);
     }
 
     @GetMapping("/getByEmail/{email}")

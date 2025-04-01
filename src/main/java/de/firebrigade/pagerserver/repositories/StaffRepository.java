@@ -25,5 +25,10 @@ public interface StaffRepository extends JpaRepository<Staff, UUID> {
     @Query("SELECT s.deviceToken FROM Staff s WHERE s.deviceToken IS NOT NULL")
     List<String> getAllDeviceTokens();
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE Staff s SET s.firstName = :firstName, s.lastName = :lastName WHERE s.id = :staffId")
+    int changeName(@Param("staffId") UUID staffId, @Param("firstName") String firstName, @Param("lastName") String lastName);
+
 }
 
