@@ -13,7 +13,7 @@ import lombok.*;
 public class Authority {
 
     @Id
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;  // Use username as the id
 
     @Column(nullable = false)

@@ -22,7 +22,7 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // Cascade ALL to save authorities automatically
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
-    private List<Authority> authorities;  // Will hold roles for the user
+    private List<Authority> authorities;
 }
