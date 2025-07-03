@@ -1,5 +1,6 @@
 package de.firebrigade.pagerserver.controller;
 
+import de.firebrigade.pagerserver.entities.EditPasswordRequest;
 import de.firebrigade.pagerserver.entities.User;
 import de.firebrigade.pagerserver.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +37,11 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable String username) {
         userService.deleteUser(username);
         return ResponseEntity.noContent().build();
+    }
+
+    //TODO: Needs an admin check so not any user can just change pw
+    @PostMapping("/changePassword")
+    public void changePassword(@RequestBody EditPasswordRequest request) {
+        userService.changePassword(request.getUsername(), request.getPassword());
     }
 }

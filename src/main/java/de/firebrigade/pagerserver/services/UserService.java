@@ -31,4 +31,8 @@ public class UserService {
     public void deleteUser(String username) {
         userRepository.deleteById(username);
     }
+
+    public void changePassword(String username, String password) {
+        userRepository.changeUserPassword(username, passwordEncoder.encode(password));
+    }
 }
