@@ -32,6 +32,10 @@ public class AlarmService {
         return alarmRepository.findById(id);
     }
 
+    public Alarm getLatestAlarm(){
+        return alarmRepository.getLatestAlarm().orElse(new Alarm());
+    };
+
     public Alarm saveAlarm(Alarm alarm) {
         //1. Get list of all Recipients (in staff get all device tokens
         List<String> deviceTokenList = staffRepository.getAllDeviceTokens();

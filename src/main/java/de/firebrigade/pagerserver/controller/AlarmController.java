@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -44,5 +45,10 @@ public class AlarmController {
     public ResponseEntity<Void> deleteAlarm(@PathVariable UUID id) {
         alarmService.deleteAlarm(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/latestAlarm")
+    public Alarm getLatestAlarm() {
+        return alarmService.getLatestAlarm();
     }
 }
